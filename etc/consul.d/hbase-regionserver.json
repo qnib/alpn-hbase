@@ -1,0 +1,13 @@
+{
+  "services": [
+    {
+        "id": "hbase-regionserver",
+        "name": "hbase-regionserver",
+        "tags": [],
+        "checks": [{
+            "script": "exit 0",
+            "interval": "10s"
+        }]
+    }
+  ]
+}

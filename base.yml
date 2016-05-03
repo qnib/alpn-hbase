@@ -1,0 +1,14 @@
+base:
+    dns: 127.0.0.1
+    dns_search:
+     - node.consul
+    environment:
+    - DC_NAME=dc1
+
+hbase:
+    extends:
+      file: base.yml
+      service: base
+    image: qnib/alpn-hbase
+    environment:
+     - SUPERVISOR_SKIP_SRV=hbase

@@ -1,8 +1,8 @@
 {
   "services": [
     {
-        "id": "hbase",
-        "name": "hbase",
+        "id": "hbase-master",
+        "name": "hbase-master",
         "tags": [],
         "port": 60010,
         "checks": [{
