@@ -1,0 +1,14 @@
+{
+  "services": [
+    {
+        "id": "hbase",
+        "name": "hbase",
+        "tags": [],
+        "port": 60010,
+        "checks": [{
+            "script": "echo 'Query localhost:60010/master-status endpoint';curl -s http://localhost:60010/master-status|grep -o '>HBase.*'",
+            "interval": "10s"
+        }]
+    }
+  ]
+}

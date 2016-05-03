@@ -1,0 +1,70 @@
+consul:
+    hostname: consul
+    container_name: consul
+    image: qnib/alpn-consul
+    environment:
+    - DC_NAME=dc1
+    - RUN_SERVER=true
+    - BOOTSTRAP_CONSUL=true
+    ports:
+    - "8500:8500"
+    dns: 127.0.0.1
+
+zkui:
+    hostname: zkui
+    container_name: zkui
+    dns: 127.0.0.1
+    image: qnib/zkui
+    environment:
+    - DC_NAME=dc1
+    links:
+    - consul:consul
+    ports:
+    - 9090:9090
+    privileged: true
+
+zookeeper0:
+    hostname: zookeeper0
+    container_name: zookeeper0
+    dns: 127.0.0.1
+    image: qnib/zookeeper
+    #volumes:
+    #- opt/qnib/zookeeper/bin/:/opt/qnib/zookeeper/bin/
+    environment:
+    - DC_NAME=dc1
+    - MYID=1
+    #- START_ZOOKEEPER=false
+    - SERVERS=zookeeper0.node.dc1.consul,zookeeper1.node.dc1.consul,zookeeper2.node.dc1.consul
+    links:
+    - consul:consul
+    ports:
+    - 2181:2181
+    privileged: true
+
+hbase1:
+    hostname: hbase1
+    container_name: hbase1
+    image: qnib/alpn-hbase
+    dns: 127.0.0.1
+    environment:
+    - DC_NAME=dc1
+    - HADOOP_HDFS_NAMENODE=true
+    links:
+    - consul:consul
+    ports:
+    - 8042:8042 
+    - 8088:8088
+    - 50070:50070
+    - 60000:60000
+    - 60010:60010
+    - 60030:60030
+
+hbase2:
+    hostname: hbase2
+    container_name: hbase2
+    image: qnib/alpn-hbase
+    dns: 127.0.0.1
+    environment:
+    - DC_NAME=dc1
+    links:
+    - consul:consul
