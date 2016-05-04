@@ -10,5 +10,3 @@ hbase:
       file: base.yml
       service: base
     image: qnib/alpn-hbase
-    environment:
-     - SUPERVISOR_SKIP_SRV=hbase
