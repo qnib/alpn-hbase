@@ -7,7 +7,7 @@
         "port": 16000,
         "checks": [{
             "script": "/opt/qnib/hbase/bin/check_rs.sh 16000",
-            "interval": "10s"
+            "interval": "5s"
         }]
     }
   ]

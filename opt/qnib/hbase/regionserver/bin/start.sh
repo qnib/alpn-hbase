@@ -11,11 +11,10 @@ fi
 mkdir -p /opt/hbase/logs/
 chown -R hadoop /opt/hbase/logs/
 
-wait_for_srv hbase-master
-sleep 5
+wait_for_srv hdfs-datanode
+sleep 2
 
-if [ ! -f /opt/hbase/conf/hbase-site.xml ];then
-	consul-template -consul localhost:8500 -once -template "/etc/consul-templates/hbase/hbase-site.xml.ctmpl:/opt/hbase/conf/hbase-site.xml"
-fi
+consul-template -consul localhost:8500 -once -template "/etc/consul-templates/hbase/hbase-site.xml.ctmpl:/opt/hbase/conf/hbase-site.xml"
+
 echo "starting hbase regionserver"
 su -c "/opt/hbase/bin/hbase --config /opt/hbase/conf/ regionserver start" hadoop

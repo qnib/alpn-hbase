@@ -8,7 +8,7 @@
         "checks": [
             {
                 "script": "/opt/qnib/hbase/bin/check_rs.sh 16020",
-                "interval": "10s"
+                "interval": "5s"
             }
         ]
     }
