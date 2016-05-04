@@ -1,0 +1,14 @@
+{
+  "services": [
+    {
+        "id": "hbase-master-info",
+        "name": "hbase-master-info",
+        "tags": [],
+        "port": 16010,
+        "checks": [{
+            "script": "/opt/qnib/hbase/master/bin/check_info.sh 16010",
+            "interval": "10s"
+        }]
+    }
+  ]
+}

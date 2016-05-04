@@ -23,22 +23,6 @@ zkui:
     - 9090:9090
     privileged: true
 
-zookeeper0:
-    hostname: zookeeper0
-    container_name: zookeeper0
-    extends:
-      file: base.yml
-      service: base
-    image: qnib/zookeeper
-    environment:
-    - MYID=1
-    - SERVERS=zookeeper0.node.dc1.consul,zookeeper1.node.dc1.consul,zookeeper2.node.dc1.consul
-    links:
-    - consul:consul
-    ports:
-    - 2181:2181
-    privileged: true
-
 hbase1:
     hostname: hbase1
     container_name: hbase1
@@ -49,6 +33,9 @@ hbase1:
      - HADOOP_HDFS_NAMENODE=true
      - HBASE_MASTER=true
      - HBASE_REGIONSERVER=true
+     - SERVERS=hbase1.node.dc1.consul
+     #- SERVERS=hbase1.node.dc1.consul,hbase2.node.dc1.consul
+     #- MYID=1
     links:
      - consul:consul
     ports:
@@ -59,13 +46,15 @@ hbase1:
      - 16010:16010
      - 16030:16030
 
-hbase2:
-    hostname: hbase2
-    container_name: hbase2
-    extends:
-      file: base.yml
-      service: hbase
-    environment:
-     - HBASE_REGIONSERVER=true
-    links:
-    - consul:consul
+#hbase2:
+#    hostname: hbase2
+#    container_name: hbase2
+#    extends:
+#      file: base.yml
+#      service: hbase
+#    environment:
+#     - HBASE_REGIONSERVER=true
+#     - SERVERS=hbase1.node.dc1.consul,hbase2.node.dc1.consul
+#     - MYID=2
+#    links:
+#    - consul:consul

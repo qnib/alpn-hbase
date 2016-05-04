@@ -4,9 +4,9 @@
         "id": "hbase-master",
         "name": "hbase-master",
         "tags": [],
-        "port": 60010,
+        "port": 16000,
         "checks": [{
-            "script": "echo 'Query localhost:60010/master-status endpoint';curl -s http://localhost:60010/master-status|grep -o '>HBase.*'",
+            "script": "/opt/qnib/hbase/bin/check_rs.sh 16000",
             "interval": "10s"
         }]
     }

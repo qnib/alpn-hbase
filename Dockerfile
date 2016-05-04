@@ -8,11 +8,19 @@ RUN curl -fLs http://apache.org/dist/hbase/${HBASE_VER}/hbase-${HBASE_VER}-bin.t
 ADD etc/consul-templates/hbase/hbase-site.xml.ctmpl /etc/consul-templates/hbase/
 ADD etc/supervisord.d/hbase-master.ini \
     etc/supervisord.d/hbase-regionserver.ini \
-    /etc/supervisord.d/
-ADD opt/qnib/hbase/master/bin/start.sh /opt/qnib/hbase/master/bin/
+    /etc/supervisord.d/ 
+ADD opt/qnib/hbase/master/bin/start.sh \
+    opt/qnib/hbase/master/bin/check.sh \
+    opt/qnib/hbase/master/bin/check_info.sh \
+    /opt/qnib/hbase/master/bin/
+ADD opt/qnib/hbase/bin/check.sh \
+    opt/qnib/hbase/bin/check_rs.sh \
+    /opt/qnib/hbase/bin/
 ADD opt/qnib/hbase/regionserver/bin/start.sh /opt/qnib/hbase/regionserver/bin/
-ADD etc/consul.d/hbase-regionserver.json \
+ADD etc/consul.d/hbase-master-info.json \
     etc/consul.d/hbase-master.json \
+    etc/consul.d/hbase-regionserver-info.json \
+    etc/consul.d/hbase-regionserver.json \
     /etc/consul.d/
 ADD etc/bashrc.hbase /etc/bashrc.hbase
 RUN echo "source /etc/bashrc.hbase" >> /etc/bashrc && \

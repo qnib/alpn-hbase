@@ -13,8 +13,9 @@ chown -R hadoop /opt/hbase/logs/
 
 wait_for_srv zookeeper
 wait_for_srv hdfs-datanode
+wait_for_srv hbase-regionserver
 sleep 5
 
 consul-template -consul localhost:8500 -once -template "/etc/consul-templates/hbase/hbase-site.xml.ctmpl:/opt/hbase/conf/hbase-site.xml"
 echo "starting hbase"
-/opt/hbase/bin/hbase --config /opt/hbase/conf/ master start
+su -c "/opt/hbase/bin/hbase --config /opt/hbase/conf/ master start" hadoop

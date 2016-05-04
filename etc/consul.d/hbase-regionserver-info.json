@@ -1,0 +1,16 @@
+{
+  "services": [
+    {
+        "id": "hbase-regionserver-info",
+        "name": "hbase-regionserver-info",
+        "tags": [],
+        "port": 16030,
+        "checks": [
+            {
+                "script": "/opt/qnib/hbase/bin/check.sh 16030",
+                "interval": "10s"
+            }
+        ]
+    }
+  ]
+}

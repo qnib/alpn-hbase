@@ -4,10 +4,13 @@
         "id": "hbase-regionserver",
         "name": "hbase-regionserver",
         "tags": [],
-        "checks": [{
-            "script": "exit 0",
-            "interval": "10s"
-        }]
+        "port": 16020,
+        "checks": [
+            {
+                "script": "/opt/qnib/hbase/bin/check_rs.sh 16020",
+                "interval": "10s"
+            }
+        ]
     }
   ]
 }

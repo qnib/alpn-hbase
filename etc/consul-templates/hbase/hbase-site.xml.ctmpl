@@ -2,7 +2,7 @@
 <configuration>
   <property>
     <name>hbase.rootdir</name>
-    <value>{{range $i, $e := service "hdfs-namenode" "any"}}{{if ne $i 0}},{{end}}hdfs://{{$e.Node}}.node.consul:{{$e.Port}}{{end}}</value>
+    <value>{{range $i, $e := service "hdfs-namenode" "any"}}{{if ne $i 0}},{{end}}hdfs://{{$e.Node}}.node.consul:{{$e.Port}}/{{end}}</value>
   </property>
   <property>
     <name>zookeeper.znode.parent</name>

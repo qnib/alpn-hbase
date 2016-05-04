@@ -18,4 +18,4 @@ if [ ! -f /opt/hbase/conf/hbase-site.xml ];then
 	consul-template -consul localhost:8500 -once -template "/etc/consul-templates/hbase/hbase-site.xml.ctmpl:/opt/hbase/conf/hbase-site.xml"
 fi
 echo "starting hbase regionserver"
-/opt/hbase/bin/hbase --config /opt/hbase/conf/ regionserver start
+su -c "/opt/hbase/bin/hbase --config /opt/hbase/conf/ regionserver start" hadoop
