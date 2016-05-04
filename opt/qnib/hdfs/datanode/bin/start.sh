@@ -3,6 +3,14 @@
 source /etc/bashrc.hadoop
 source /opt/qnib/consul/etc/bash_functions.sh
 
+if [ "${HADOOP_HDFS_DATANODE}" != "true" ];then
+    echo "> 'HADOOP_HDFS_DATANODE!=true' Remove service"
+    rm -f /etc/consul.d/hdfs-datanode.json
+    consul reload
+    sleep 2
+    exit 0
+fi
+
 if [ ! -d /data/hadoopdata/logs ];then
     mkdir /data/hadoopdata/logs/
     chown -R hadoop: /data/hadoopdata/logs/
