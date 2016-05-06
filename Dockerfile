@@ -4,7 +4,11 @@ ENV HBASE_VER=1.2.1 \
     HBASE_CLUSTER_DISTRIBUTED=true \
     HBASE_MASTER=false \
     HBASE_REGIONSERVER=false
-RUN curl -fLs http://apache.org/dist/hbase/${HBASE_VER}/hbase-${HBASE_VER}-bin.tar.gz | tar xzf - -C /opt && mv /opt/hbase-${HBASE_VER} /opt/hbase
+RUN apk add --update curl \
+ && curl -fLs http://apache.org/dist/hbase/${HBASE_VER}/hbase-${HBASE_VER}-bin.tar.gz |tar xzf - -C /opt \
+ && mv /opt/hbase-${HBASE_VER} /opt/hbase \
+ && apk del curl \
+ && rm -rf /var/cache/apk/*
 ADD etc/consul-templates/hbase/hbase-site.xml.ctmpl /etc/consul-templates/hbase/
 ADD etc/supervisord.d/hbase-master.ini \
     etc/supervisord.d/hbase-regionserver.ini \
