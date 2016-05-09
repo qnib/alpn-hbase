@@ -38,6 +38,21 @@ zookeeper:
     - 2181:2181
     privileged: true
 
+hdfs-namenode:
+    hostname: hdfs-namenode
+    container_name: hdfs-namenode
+    extends:
+      file: base.yml
+      service: hdfs
+    environment:
+     - HADOOP_HDFS_NAMENODE=true
+     - HADOOP_HDFS_DATANODE=false
+    links:
+     - consul:consul
+    ports:
+     - 8020:8020
+     - 50070:50070
+
 hbase1:
     hostname: hbase1
     container_name: hbase1
@@ -45,29 +60,32 @@ hbase1:
       file: base.yml
       service: hbase
     environment:
-     - HADOOP_HDFS_NAMENODE=true
      - HBASE_MASTER=true
      - HBASE_REGIONSERVER=true
     links:
      - consul:consul
     ports:
-     - 8020:8020
      - 8042:8042 
      - 8088:8088
-     - 50070:50070
      - 16000:16000
      - 16010:16010
      - 16030:16030
 
-#hbase2:
-#    hostname: hbase2
-#    container_name: hbase2
-#    extends:
-#      file: base.yml
-#      service: hbase
-#    environment:
-#     - HBASE_REGIONSERVER=true
-#     - SERVERS=hbase1.node.dc1.consul,hbase2.node.dc1.consul
-#     - MYID=2
-#    links:
-#    - consul:consul
+hbase2:
+    hostname: hbase2
+    container_name: hbase2
+    extends:
+      file: base.yml
+      service: hbase
+    environment:
+     - HBASE_MASTER=false
+     - HBASE_REGIONSERVER=true
+    links:
+     - consul:consul
+    ports:
+     - 8042 
+     - 8088
+     - 16000
+     - 16010
+     - 16030
+

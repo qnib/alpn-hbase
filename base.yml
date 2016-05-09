@@ -10,3 +10,9 @@ hbase:
       file: base.yml
       service: base
     image: qnib/alpn-hbase
+
+hdfs:
+    extends:
+      file: base.yml
+      service: base
+    image: qnib/alpn-hdfs
