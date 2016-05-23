@@ -1,0 +1,2 @@
+ {{range $i, $e := service "hbase-regionserver" "any"}}{{$e.Node}}.node.consul
+{{end}}

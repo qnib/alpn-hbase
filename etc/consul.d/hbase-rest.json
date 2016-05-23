@@ -1,0 +1,14 @@
+{
+  "services": [
+    {
+        "id": "hbase-rest",
+        "name": "hbase-rest",
+        "tags": [],
+        "port": 16070,
+        "checks": [{
+            "script": "/opt/qnib/hbase/bin/check_rs.sh 16070",
+            "interval": "5s"
+        }]
+    }
+  ]
+}

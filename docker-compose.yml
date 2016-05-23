@@ -63,6 +63,7 @@ hbase:
      - HADOOP_HDFS_NAMENODE=false
      - HBASE_MASTER=true
      - HBASE_REGIONSERVER=true
+     - HBASE_REST=true
     links:
      - consul:consul
     ports:
@@ -70,6 +71,8 @@ hbase:
      - 16010
      - 16020
      - 16030
+     - 16070
+     - 16080
 
 hbase-data1:
     hostname: hbase-data1
@@ -79,12 +82,15 @@ hbase-data1:
       service: hbase
     environment:
      - HBASE_MASTER=false
+     - HBASE_REST=true
      - HBASE_REGIONSERVER=true
     links:
      - consul:consul
     ports:
      - 16020
      - 16030
+     - 16070
+     - 16080
 
 hbase-data2:
     hostname: hbase-data2
@@ -93,6 +99,7 @@ hbase-data2:
       file: base.yml
       service: hbase
     environment:
+     - HBASE_REST=true
      - HBASE_MASTER=false
      - HBASE_REGIONSERVER=true
     links:
@@ -100,4 +107,6 @@ hbase-data2:
     ports:
      - 16020
      - 16030
+     - 16070
+     - 16080
 
