@@ -13,7 +13,8 @@ chown -R hadoop /opt/hbase/logs/
 
 wait_for_srv hdfs-datanode
 wait_for_srv hdfs-namenode
-sleep 5
+
+sleep 2
 
 consul-template -consul localhost:8500 -once -template "/etc/consul-templates/hbase/hbase-site.xml.ctmpl:/opt/hbase/conf/hbase-site.xml"
 

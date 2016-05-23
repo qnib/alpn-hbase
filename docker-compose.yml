@@ -53,20 +53,23 @@ hdfs-namenode:
      - 8020:8020
      - 50070:50070
 
-#hbase-master:
-#    hostname: hbase-master
-#    container_name: hbase-master
-#    extends:
-#      file: base.yml
-#      service: hbase
-#    environment:
-#     - HBASE_MASTER=true
-#     - HBASE_REGIONSERVER=false
-#    links:
-#     - consul:consul
-#    ports:
-#     - 16000:16000
-#     - 16010:16010
+hbase:
+    hostname: hbase
+    container_name: hbase
+    extends:
+      file: base.yml
+      service: hbase
+    environment:
+     - HADOOP_HDFS_NAMENODE=false
+     - HBASE_MASTER=true
+     - HBASE_REGIONSERVER=true
+    links:
+     - consul:consul
+    ports:
+     - 16000
+     - 16010
+     - 16020
+     - 16030
 
 hbase-data1:
     hostname: hbase-data1
@@ -75,15 +78,13 @@ hbase-data1:
       file: base.yml
       service: hbase
     environment:
-     - HBASE_MASTER=true
+     - HBASE_MASTER=false
      - HBASE_REGIONSERVER=true
     links:
      - consul:consul
     ports:
-     - 16000:16000
-     - 16010:16010
-     - 16020:16020
-     - 16030:16030
+     - 16020
+     - 16030
 
 hbase-data2:
     hostname: hbase-data2
