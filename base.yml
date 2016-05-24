@@ -15,4 +15,4 @@ hdfs:
     extends:
       file: base.yml
       service: base
-    image: qnib/alpn-hdfs:train
+    image: qnib/alpn-hdfs
