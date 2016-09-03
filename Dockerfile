@@ -17,14 +17,18 @@ ADD etc/supervisord.d/hbase-master.ini \
 ADD opt/qnib/hbase/master/bin/start.sh \
     opt/qnib/hbase/master/bin/check.sh \
     opt/qnib/hbase/master/bin/check_info.sh \
+    opt/qnib/hbase/master/bin/healthcheck.sh \
     /opt/qnib/hbase/master/bin/
 ADD opt/qnib/hbase/rest/bin/start.sh \
     opt/qnib/hbase/rest/bin/check.sh \
+    opt/qnib/hbase/rest/bin/healthcheck.sh \
     /opt/qnib/hbase/rest/bin/
 ADD opt/qnib/hbase/bin/check.sh \
     opt/qnib/hbase/bin/check_rs.sh \
     /opt/qnib/hbase/bin/
-ADD opt/qnib/hbase/regionserver/bin/start.sh /opt/qnib/hbase/regionserver/bin/
+ADD opt/qnib/hbase/regionserver/bin/start.sh \
+    opt/qnib/hbase/regionserver/bin/healthcheck.sh \
+    /opt/qnib/hbase/regionserver/bin/
 ADD etc/consul.d/hbase-master-info.json \
     etc/consul.d/hbase-master.json \
     etc/consul.d/hbase-regionserver-info.json \
