@@ -1,11 +1,13 @@
 #!/usr/local/bin/dumb-init /bin/bash
 source /etc/bashrc
 source /opt/qnib/consul/etc/bash_functions.sh
+wait_for_srv consul-http
 
 if [ "X${HBASE_REGIONSERVER}" != "Xtrue" ];then
    echo ">> Do not start regionserver"
-   rm -f /etc/consul.d/hbase-regionserver.json
+   rm -f /etc/consul.d/hbase-regionserver*.json
    consul reload
+   exit 0
 fi
 
 mkdir -p /opt/hbase/logs/

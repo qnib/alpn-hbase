@@ -1,12 +1,12 @@
 #!/usr/local/bin/dumb-init /bin/bash
 source /etc/bashrc
 source /opt/qnib/consul/etc/bash_functions.sh
+wait_for_srv consul-http
 
 if [ "X${HBASE_MASTER}" != "Xtrue" ];then
    echo ">> Do not start master"
    rm -f /etc/consul.d/hbase-master*.json
    consul reload
-   sleep 2
    exit 0
 fi
 

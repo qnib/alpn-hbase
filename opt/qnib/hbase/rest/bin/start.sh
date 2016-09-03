@@ -1,12 +1,12 @@
 #!/usr/local/bin/dumb-init /bin/bash
 source /etc/bashrc
 source /opt/qnib/consul/etc/bash_functions.sh
+wait_for_srv consul-http
 
 if [ "X${HBASE_REST}" != "Xtrue" ];then
    echo ">> Do not start rest"
    rm -f /etc/consul.d/hbase-rest*.json
    consul reload
-   sleep 2
    exit 0
 fi
 
