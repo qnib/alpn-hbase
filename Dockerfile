@@ -37,5 +37,6 @@ ADD etc/consul.d/hbase-master-info.json \
     /etc/consul.d/
 ADD etc/bashrc.hbase /etc/bashrc.hbase
 RUN echo "source /etc/bashrc.hbase" >> /etc/bashrc \
+ && echo "/opt/hbase/bin/hbase org.apache.hadoop.hbase.PerformanceEvaluation sequentialWrite 100" >> /root/.bash_history \
  && echo "tail -f /var/log/supervisor/hbase-regionserver.log" >> /root/.bash_history \
  && echo "tail -f /var/log/supervisor/hbase-master.log" >> /root/.bash_history
