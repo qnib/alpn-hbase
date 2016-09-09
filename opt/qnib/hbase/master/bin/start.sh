@@ -18,5 +18,6 @@ wait_for_srv zookeeper
 sleep 2
 
 consul-template -consul localhost:8500 -once -template "/etc/consul-templates/hbase/hbase-site.xml.ctmpl:/opt/hbase/conf/hbase-site.xml"
+consul-template -consul localhost:8500 -once -template "/etc/consul-templates/hbase/regionservers.ctmpl:/opt/hbase/conf/regionservers"
 echo "starting hbase"
 su -c "/opt/hbase/bin/hbase --config /opt/hbase/conf/ master start" hadoop
