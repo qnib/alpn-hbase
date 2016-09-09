@@ -7,6 +7,7 @@ if [ "X${HBASE_REGIONSERVER}" != "Xtrue" ];then
    echo ">> Do not start regionserver"
    rm -f /etc/consul.d/hbase-regionserver*.json
    consul reload
+   sleep 5
    exit 0
 fi
 
