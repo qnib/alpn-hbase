@@ -1,6 +1,6 @@
 FROM qnib/alpn-hdfs
 
-ARG HBASE_VER=1.2.2
+ARG HBASE_VER=1.2.3
 ENV HBASE_CLUSTER_DISTRIBUTED=true \
     HBASE_MASTER=false \
     HBASE_MANAGES_ZK=false \
